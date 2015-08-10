@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+{{ partial "header.html" . }}
+
+<body>
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    {{ partial "navigation.html" . }}
+    <main class="mdl-layout__content">
+      <div class="page-content">
+        <div class="markdown-body">
+
+          <!-- A wrapper for all the blog posts -->
+          <div class="posts">
+              {{ range .Paginator.Pages }}
+              <h2><a href="{{ .Permalink }}" class="post-title">{{ .Title }}</a></h2>
+              <h5 class="content-subhead">{{ .Date.Format "02 Jan 2006, 15:04" }}</h5>
+              <section class="post">
+                  <header class="post-header">
+                      <p class="post-meta">
+                          {{ with .Params.author }}
+                              By <strong class="post-author">{{ . }}</strong>
+                          {{ end }}
+                          {{ if isset .Params "categories" }}
+                              under
+                              {{ $baseUrl := .Site.BaseURL }}
+                              {{ range .Params.categories }}<a class="post-category post-category-{{ . }}" href="{{ $baseUrl }}/categories/{{ . | urlize }}">{{ . }}</a>{{ end }}
+                          {{ end }}
+                      </p>
+                  </header>
+
+                  <div class="post-description">
+                      {{ .Content }}
+                  </div>
+              </section>
+              {{ end }}
+              {{ template "_internal/pagination.html" . }}
+          </div>
+        </div>
+      </div>
+      {{ partial "footer.html" . }}
+    </main>
+  </div>
+
+</body>
+
+</html>
