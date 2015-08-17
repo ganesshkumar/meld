@@ -11,7 +11,8 @@ Hugo theme based on Google's MDL for responsiveness and material design, aimed t
 ## What all resides in the theme
 
 1. Index page 
-2. Pagination (Basic in index page)
+2. Pagination
+  * Have to disable next arrow in last page and prev arrow in first page
 3. Single page (for post)
 4. Google Analytics (hard coded)
 
